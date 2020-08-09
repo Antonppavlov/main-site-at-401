@@ -14,8 +14,8 @@ public class Wall implements Obstacles {
         if (runner.getMaxWeight() >= width) {
             System.out.println(runner.getClass().getSimpleName() + " " + runner.getName() + " выполнил испытание, перепрыгнув стену высотой: " + width);
         } else {
-            runner.setSuccess(false);
             System.out.println(runner.getClass().getSimpleName() + " " + runner.getName() + " не перепрыгнул стену высотой: " + width);
+            runner.setSuccess(false);
         }
     }
 }

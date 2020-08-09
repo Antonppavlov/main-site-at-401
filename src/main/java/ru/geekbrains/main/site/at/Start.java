@@ -8,28 +8,43 @@ import ru.geekbrains.main.site.at.participants.Robot;
 import ru.geekbrains.main.site.at.participants.Runner;
 import ru.geekbrains.main.site.at.obstacles.Obstacles;
 
+/**
+Создайте три класса Человек, Кот, Робот, которые не наследуются от одного класса.
+Эти классы должны уметь бегать и прыгать (методы просто выводят информацию о действии в консоль).
+————————————————————————
+Создайте два класса: беговая дорожка и стена,
+при прохождении через которые, участники должны выполнять соответствующие действия (бежать или прыгать),
+результат выполнения печатаем в консоль (успешно пробежал, не смог пробежать и т.д.).
+У препятствий есть длина (для дорожки) или высота (для стены), а участников ограничения на бег и прыжки.
+————————————————————————
+Создайте два массива: с участниками и препятствиями, и заставьте всех участников пройти этот набор препятствий.
+
+————————————————————————
+Задание со звездочкой:
+Если участник не смог пройти одно из препятствий, то дальше по списку он препятствий не идет.
+ */
+
 public class Start {
     public static void main(String[] args) {
         /**
          * Создание объектов участников
          */
-        Runner catTom = new Cat("Tom", 10, 5);
-        Runner catLarry = new Cat("Larry", 7, 3);
-        Runner catBoris = new Cat("Boris", 14, 8);
+        Cat catTom = new Cat("Tom", 10, 5);
+        Cat catLarry = new Cat("Larry", 7, 3);
+        Cat catBoris = new Cat("Boris", 14, 8);
 
-        Runner humanMax = new Human("Max", 13, 4);
-        Runner humanAnna = new Human("Anna", 10, 2);
-        Runner humanAlex = new Human("Alex", 18, 6);
+        Human humanMax = new Human("Max", 13, 4);
+        Human humanAnna = new Human("Anna", 10, 2);
+        Human humanAlex = new Human("Alex", 18, 6);
 
-        Runner robotVally = new Robot("Vally", 13, 4);
-        Runner robotEva = new Robot("Eva", 20, 20);
-        Runner robotBender = new Robot("Bender", 10, 7);
+        Robot robotVally = new Robot("Vally", 13, 4);
+        Robot robotEva = new Robot("Eva", 20, 20);
+        Robot robotBender = new Robot("Bender", 10, 7);
 
         /**
          * Объединение участников в массив
          */
         Runner[] runners = {catTom, catLarry, catBoris, humanMax, humanAnna, humanAlex, robotVally, robotEva, robotBender};
-
 
         /**
          * Создание объектов препятствий
