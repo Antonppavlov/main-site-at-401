@@ -17,6 +17,7 @@ import ru.geekbrains.main.site.at.base.BaseSettingsTest;
 
 public class NavigationTest extends BaseSettingsTest {
 
+
     @Test
     public void checkEvents() {
         WebElement eventsButton = driver.findElement(By.cssSelector("aside nav [href=\"/events\"]"));
