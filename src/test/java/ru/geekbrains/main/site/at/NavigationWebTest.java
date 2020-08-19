@@ -1,18 +1,11 @@
 package ru.geekbrains.main.site.at;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
-
-import java.util.stream.Stream;
 
 //        Перейти на сайт https://geekbrains.ru/career
 //        Нажать на кнопку Форум
