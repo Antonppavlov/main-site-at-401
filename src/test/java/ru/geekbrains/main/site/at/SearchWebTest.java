@@ -28,6 +28,8 @@ public class SearchWebTest extends BaseWebSettingsTest {
 
     @Test
     public void searchTextJava() {
+
+
         WebElement buttonSearch = driver.findElement(By.cssSelector("a>[class=\"svg-icon icon-search \"]"));
         buttonSearch.click();
 

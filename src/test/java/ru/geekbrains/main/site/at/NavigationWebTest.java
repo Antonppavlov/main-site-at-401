@@ -1,11 +1,9 @@
 package ru.geekbrains.main.site.at;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
+import ru.geekbrains.main.site.at.page.ContentPage;
 
 //        Перейти на сайт https://geekbrains.ru/career
 //        Нажать на кнопку Форум
@@ -33,35 +31,32 @@ public class NavigationWebTest extends BaseWebSettingsTest {
 
 
     @Test
-    void navigation() {
+    void navigation() throws InterruptedException {
         driver.get("https://geekbrains.ru/career");
-        WebElement eventsButton = driver.findElement(By.cssSelector("aside nav [href=\"/events\"]"));
-        eventsButton.click();
 
-        WebElement eventsTitlePage = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
+        ContentPage contentPage = new ContentPage(driver);
 
-//        Thread.sleep(3000);
-        Assertions.assertEquals("Вебинары", eventsTitlePage.getText());
+        contentPage.getNavigationBlock().clickButton("Вебинары");
+
+        Thread.sleep(3000);
+        contentPage.checkPageName("Вебинары");
 
 //        href="/topics"
-        driver.findElement(By.cssSelector("aside nav [href=\"/topics\"]")).click();
-        String textTopics = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
-        Assertions.assertEquals("Форум", textTopics);
+        contentPage.getNavigationBlock().clickButton("Форум");
+        contentPage.checkPageName("Форум");
 //        href="/posts"
-        driver.findElement(By.cssSelector("aside nav [href=\"/posts\"]")).click();
-        String textPosts = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
-        Assertions.assertEquals("Блог", textPosts);
+        contentPage.getNavigationBlock().clickButton("Блог");
+        contentPage.checkPageName("Блог");
 //        href="/tests"
 
-        driver.findElement(By.cssSelector("[class=\"gb-empopup-close\"]")).click();
-        driver.findElement(By.cssSelector("button>[class=\"svg-icon icon-popup-close-button \"]")).click();
+        contentPage.getPopUp2().click();
+        contentPage.getPopUp1().click();
 
-        driver.findElement(By.cssSelector("aside nav [href=\"/tests\"]")).click();
-        String textTest = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
-        Assertions.assertEquals("Тесты", textTest);
+        contentPage.getNavigationBlock().clickButton("Тесты");
+        contentPage.checkPageName("Тесты");
 //        href="/career"
-        driver.findElement(By.cssSelector("aside nav [href=\"/career\"]")).click();
-        String textCareer = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
-        Assertions.assertEquals("Карьера", textCareer);
+        contentPage.getNavigationBlock().clickButton("Карьера");
+        contentPage.checkPageName("Карьера");
+
     }
 }
