@@ -4,7 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.main.site.at.base.BaseSettingsTest;
+import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 //Перейти на сайт https://geekbrains.ru/courses
 //        Нажать на кнопку Поиск
@@ -20,7 +24,7 @@ import ru.geekbrains.main.site.at.base.BaseSettingsTest;
 //        В Проектах и компаниях отображается GeekBrains
 
 
-public class SearchTest extends BaseSettingsTest {
+public class SearchWebTest extends BaseWebSettingsTest {
 
     @Test
     public void searchTextJava() {
@@ -46,15 +50,22 @@ public class SearchTest extends BaseSettingsTest {
         wait30second.until(ExpectedConditions.visibilityOf(textTests));
         wait30second.until(ExpectedConditions.visibilityOf(textProject));
 
+        WebElement professionsCount = driver.findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='professions']/span"));
+        WebElement coursesCount = driver.findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='courses']/span"));
+        WebElement eventsCount = driver.findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='webinars']/span"));
+        WebElement blogsCount = driver.findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='blogs']/span"));
+        WebElement forumsCount = driver.findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='forums']/span"));
+        WebElement testsCount = driver.findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='tests']/span"));
+        WebElement firstWebinarInList = driver.findElement(By.xpath("//a[@class='event__title h3 search_text']"));
 
-//        Профессии
-//                Курсы
-//        Вебинары
-//                Блоги
-//        Форум
-//                Тесты
-//        Проекты и компании
 
+        assertThat(Integer.parseInt(professionsCount.getText()), greaterThanOrEqualTo(2));
+        assertThat(Integer.parseInt(coursesCount.getText()), greaterThan(15));
+        assertThat(Integer.parseInt(eventsCount.getText()), allOf(greaterThan(180), lessThan(300)));
+        assertThat(Integer.parseInt(blogsCount.getText()), greaterThan(300));
+        assertThat(Integer.parseInt(forumsCount.getText()), not(equalTo(350)));
+        assertThat(Integer.parseInt(testsCount.getText()), not(equalTo(0)));
+        assertThat(firstWebinarInList.getText(), equalTo("Java Junior. Что нужно знать для успешного собеседования?"));
 
     }
 }
