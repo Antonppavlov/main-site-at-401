@@ -38,51 +38,37 @@ public class NavigationWebTest extends BaseWebSettingsTest {
 //    Карьера
 //    Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
 
-    @AfterEach
-    void tearDown() {
-        WebElement header = driver.findElement(By.cssSelector("[class*=\"gb-header__content\"]"));
-        WebElement footer = driver.findElement(By.cssSelector("[class=\"site-footer__content\"]"));
 
-        wait15second.until(ExpectedConditions.visibilityOf(
-                header));
-        wait15second.until(ExpectedConditions.visibilityOf(
-                footer));
-    }
-
-    @DisplayName("Блог")
     @Test
-    public void posts() {
-        driver.findElement(By.cssSelector("[id=\"nav\"] [href=\"/posts\"]")).click();
+    void navigation() {
+        driver.get("https://geekbrains.ru/career");
+        WebElement eventsButton = driver.findElement(By.cssSelector("aside nav [href=\"/events\"]"));
+        eventsButton.click();
+
+        WebElement eventsTitlePage = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
+
+//        Thread.sleep(3000);
+        Assertions.assertEquals("Вебинары", eventsTitlePage.getText());
+
+//        href="/topics"
+        driver.findElement(By.cssSelector("aside nav [href=\"/topics\"]")).click();
+        String textTopics = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
+        Assertions.assertEquals("Форум", textTopics);
+//        href="/posts"
+        driver.findElement(By.cssSelector("aside nav [href=\"/posts\"]")).click();
+        String textPosts = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
+        Assertions.assertEquals("Блог", textPosts);
+//        href="/tests"
 
         driver.findElement(By.cssSelector("[class=\"gb-empopup-close\"]")).click();
-        driver.findElement(By.cssSelector("button [class=\"svg-icon icon-popup-close-button \"]")).click();
+        driver.findElement(By.cssSelector("button>[class=\"svg-icon icon-popup-close-button \"]")).click();
 
-        Assertions.assertEquals(
-                "Блог",
-                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
-        );
+        driver.findElement(By.cssSelector("aside nav [href=\"/tests\"]")).click();
+        String textTest = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
+        Assertions.assertEquals("Тесты", textTest);
+//        href="/career"
+        driver.findElement(By.cssSelector("aside nav [href=\"/career\"]")).click();
+        String textCareer = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]")).getText();
+        Assertions.assertEquals("Карьера", textCareer);
     }
-
-    @DisplayName("Нажатие на элемент навигации")
-    @ParameterizedTest
-    @MethodSource("dataProvider")
-    public void courses(String namePage, String valueHref) {
-        driver.findElement(By.cssSelector("[id=\"nav\"] [href='/" + valueHref + "']")).click();
-        Assertions.assertEquals(
-                namePage,
-                driver.findElement(By.cssSelector("[id=\"top-menu\"] h2")).getText()
-        );
-    }
-
-    public static Stream<Arguments> dataProvider() {
-        return Stream.of(
-                Arguments.of("Форум", "topics"),
-                Arguments.of("Вебинары", "events"),
-                Arguments.of("Тесты", "tests"),
-                Arguments.of("Карьера", "career")
-//                Arguments.of("Курсы", "courses")
-        );
-    }
-
-
 }
