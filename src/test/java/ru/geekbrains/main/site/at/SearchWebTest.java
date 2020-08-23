@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,11 @@ import static org.hamcrest.Matchers.*;
 //        Форумов не 350
 //        Тестов не 0
 
+
+@Epic("Web UI тесты")
+@Feature("Поиск")
+@Story("Проверка отображения всех блоков")
+
 @DisplayName("Поиск")
 public class SearchWebTest extends BaseWebSettingsTest {
 
@@ -33,6 +39,9 @@ public class SearchWebTest extends BaseWebSettingsTest {
 
     @DisplayName("Проверка количества контента")
     @Test
+    @Description("Дополнительная информация по тесту")
+    @Issue("Issue_LINK")
+    @TmsLink("BUG_LINK")
     void searchTest() {
         driver.get("https://geekbrains.ru/login");
         new AuthorizationPage(driver)

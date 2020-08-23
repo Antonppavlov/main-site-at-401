@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,7 @@ public class HeaderBlock extends BasePage {
         super(driver);
     }
 
+    @Step("проверка что имя страницы равно: {exampleNamePage}")
     public HeaderBlock checkNamePage(String exampleNamePage) {
         webDriverWait.until(ExpectedConditions.textToBePresentInElement(headerTitlePage, exampleNamePage));
         return this;

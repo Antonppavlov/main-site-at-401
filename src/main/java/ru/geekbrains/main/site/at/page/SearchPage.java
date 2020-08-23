@@ -27,6 +27,7 @@ public class SearchPage extends BasePage {
         this.searchTabsBlock = new SearchTabsBlock(driver);
     }
 
+
     public SearchPage checkPageName(String expectedNamePage) {
         headerBlock.checkNamePage(expectedNamePage);
 

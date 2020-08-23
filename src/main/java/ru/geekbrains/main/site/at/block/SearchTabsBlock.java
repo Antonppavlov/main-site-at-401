@@ -1,11 +1,13 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.utils.ButtonNotFoundException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -43,6 +45,7 @@ public class SearchTabsBlock extends BasePage {
         getTab(tabName).click();
     }
 
+    @Step("проверка что в: '{tabName}' количество: '{matcher}'")
     public SearchTabsBlock checkCount(String tabName, Matcher<Integer> matcher) {
         String actualCount = getTab(tabName).findElement(By.cssSelector("span")).getText();
         assertThat(Integer.parseInt(actualCount), matcher);
@@ -68,7 +71,7 @@ public class SearchTabsBlock extends BasePage {
             case "Компании":
                 return tabCompanies;
             default:
-                throw new RuntimeException("Элемента: "+tabName+" нет на странице!");
+                throw new ButtonNotFoundException("Элемента: "+tabName+" нет на странице!");
         }
     }
 }
