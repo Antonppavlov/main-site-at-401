@@ -14,6 +14,7 @@ public class AuthorizationTest extends BaseWebSettingsTest {
         authorizationPage.getInputLogin().sendKeys("hks47018@eoopy.com");
         authorizationPage.getInputPassword().sendKeys("hks47018");
         authorizationPage.getButtonSingIn().click();
+
         ContentPage contentPage = new ContentPage(driver);
         contentPage.checkPageName("Главная");
     }
@@ -25,7 +26,8 @@ public class AuthorizationTest extends BaseWebSettingsTest {
     void name1() {
         driver.get("https://geekbrains.ru/login");
         new AuthorizationPage(driver)
-                .singIn("hks47018@eoopy.com","hks47018")
+                .singIn("hks47018@eoopy.com", "hks47018")
                 .checkPageName("Главная");
+
     }
 }

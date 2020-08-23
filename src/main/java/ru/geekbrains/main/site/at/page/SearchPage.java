@@ -6,11 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import ru.geekbrains.main.site.at.BasePage;
 import ru.geekbrains.main.site.at.block.HeaderBlock;
 import ru.geekbrains.main.site.at.block.NavigationBlock;
+import ru.geekbrains.main.site.at.block.SearchTabsBlock;
 
-public class ContentPage extends BasePage {
+public class SearchPage extends BasePage {
 
     private HeaderBlock headerBlock;
     private NavigationBlock navigationBlock;
+    private SearchTabsBlock searchTabsBlock;
 
     @FindBy(css = "[class=\"gb-empopup-close\"]")
     private WebElement popUp1;
@@ -18,20 +20,15 @@ public class ContentPage extends BasePage {
     @FindBy(css = "button>[class=\"svg-icon icon-popup-close-button \"]")
     private WebElement popUp2;
 
-    public ContentPage(WebDriver driver) {
+    public SearchPage(WebDriver driver) {
         super(driver);
         this.headerBlock = new HeaderBlock(driver);
         this.navigationBlock = new NavigationBlock(driver);
+        this.searchTabsBlock = new SearchTabsBlock(driver);
     }
 
-    public ContentPage checkPageName(String expectedNamePage) {
+    public SearchPage checkPageName(String expectedNamePage) {
         headerBlock.checkNamePage(expectedNamePage);
-        return this;
-    }
-
-    public ContentPage closePopUp(){
-        popUp1.click();
-        popUp2.click();
 
         return this;
     }
@@ -44,5 +41,15 @@ public class ContentPage extends BasePage {
         return navigationBlock;
     }
 
+    public WebElement getPopUp1() {
+        return popUp1;
+    }
 
+    public WebElement getPopUp2() {
+        return popUp2;
+    }
+
+    public SearchTabsBlock getSearchTabsBlock() {
+        return searchTabsBlock;
+    }
 }
