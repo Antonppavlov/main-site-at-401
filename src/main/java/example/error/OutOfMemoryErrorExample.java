@@ -1,4 +1,4 @@
-package example;
+package example.error;
 
 import java.util.ArrayList;
 import java.util.List;

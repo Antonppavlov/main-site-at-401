@@ -21,23 +21,11 @@ public class AuthorizationPage extends BasePage {
         super(driver);
     }
 
-    @Step("авторизация с логин {login} и пароль {password}")
+    @Step("Авторизация с логин {login} и пароль {password}")
     public ContentPage singIn(String login, String password) {
         inputLogin.sendKeys(login);
         inputPassword.sendKeys(password);
         buttonSingIn.click();
         return new ContentPage(driver);
-    }
-
-    public WebElement getInputLogin() {
-        return inputLogin;
-    }
-
-    public WebElement getInputPassword() {
-        return inputPassword;
-    }
-
-    public WebElement getButtonSingIn() {
-        return buttonSingIn;
     }
 }

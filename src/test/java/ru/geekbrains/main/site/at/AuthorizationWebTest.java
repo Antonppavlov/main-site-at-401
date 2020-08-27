@@ -8,26 +8,18 @@ import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
 
+//Реализовать тест:
+//1. Перейти на страницу авторизация https://geekbrains.ru/login
+//2. Ввести логин : hks47018@eoopy.com
+//3. Пароль: hks47018
+//4. Нажать кнопку войти
+//5. Проверить что отобразилась страница "Главная"
 
 @Epic("Web UI тесты")
 @Feature("Авторизация")
 @Story("Успешная авторизация")
 @DisplayName("Авторизация")
 public class AuthorizationWebTest extends BaseWebSettingsTest {
-
-//    @Test
-//    void name() {
-//        driver.get("https://geekbrains.ru/login");
-//        AuthorizationPage authorizationPage = new AuthorizationPage(driver);
-//        authorizationPage.getInputLogin().sendKeys("hks47018@eoopy.com");
-//        authorizationPage.getInputPassword().sendKeys("hks47018");
-//        authorizationPage.getButtonSingIn().click();
-//
-//        ContentPage contentPage = new ContentPage(driver);
-//        contentPage.checkPageName("Главная");
-//    }
-
-
 
     @DisplayName("Авторизация с почтой 10минут")
     @Test

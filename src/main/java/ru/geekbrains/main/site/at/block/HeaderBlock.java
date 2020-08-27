@@ -23,12 +23,13 @@ public class HeaderBlock extends BasePage {
         super(driver);
     }
 
-    @Step("проверка что имя страницы равно: {exampleNamePage}")
+    @Step("Проверка что имя страницы равно: {exampleNamePage}")
     public HeaderBlock checkNamePage(String exampleNamePage) {
         webDriverWait.until(ExpectedConditions.textToBePresentInElement(headerTitlePage, exampleNamePage));
         return this;
     }
 
+    @Step("Ввод в функционал Поиска текст: '{text}'")
     public SearchPage searchText(String text) {
         buttonSearch.click();
         inputSearch.sendKeys(text);

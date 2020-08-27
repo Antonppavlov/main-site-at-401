@@ -1,4 +1,4 @@
-package example;
+package example.error;
 
 public class StackOverflowErrorExample {
     static int count = 0;

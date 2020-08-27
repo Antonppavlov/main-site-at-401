@@ -27,19 +27,6 @@ import java.util.stream.Stream;
 @DisplayName("Навигация")
 public class NavigationWebTest extends BaseWebSettingsTest {
 
-//    Перейти на сайт https://geekbrains.ru/events
-//    Нажать на кнопку Курсы
-//    Проверить что страница Курсы открылась
-//    Повторить для
-//    Курсы
-//    Вебинары
-//    Форум
-//    Блог
-//    Тесты
-//    Карьера
-//    Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
-
-
     @ParameterizedTest(name = "{index} => Нажатие на: {0}")
     @MethodSource("stringProviderNotPopUp")
     public void checkNavigationNotPopUp(String button) {

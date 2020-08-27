@@ -1,17 +1,14 @@
 package ru.geekbrains.main.site.at;
 
 import io.qameta.allure.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.hamcrest.Matchers.*;
 
-//Перейти на сайт https://geekbrains.ru/courses
+//        Перейти на сайт https://geekbrains.ru/courses
 //        Нажать на кнопку Поиск
 //        В поле Поиск ввести текст: java
 //        Проверить что отобразились блоки и в них:
@@ -31,17 +28,11 @@ import static org.hamcrest.Matchers.*;
 public class SearchWebTest extends BaseWebSettingsTest {
 
 
-    @BeforeEach
-    void beforeSearchTest() {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
-
-
     @DisplayName("Проверка количества контента")
     @Test
     @Description("Дополнительная информация по тесту")
-    @Issue("Issue_LINK")
-    @TmsLink("BUG_LINK")
+    @Issue("GMS-1005")
+    @TmsLink("GMS-30")
     void searchTest() {
         driver.get("https://geekbrains.ru/login");
         new AuthorizationPage(driver)

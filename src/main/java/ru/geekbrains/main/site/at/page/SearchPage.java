@@ -30,7 +30,6 @@ public class SearchPage extends BasePage {
 
     public SearchPage checkPageName(String expectedNamePage) {
         headerBlock.checkNamePage(expectedNamePage);
-
         return this;
     }
 

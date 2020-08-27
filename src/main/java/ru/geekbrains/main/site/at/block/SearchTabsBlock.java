@@ -41,11 +41,12 @@ public class SearchTabsBlock extends BasePage {
         super(driver);
     }
 
+    @Step("Нажатие на странице Поиска на кнопку: '{nameButton}'")
     public void clickTab(String tabName) {
         getTab(tabName).click();
     }
 
-    @Step("проверка что в: '{tabName}' количество: '{matcher}'")
+    @Step("Проверка что в: '{tabName}' количество: '{matcher}'")
     public SearchTabsBlock checkCount(String tabName, Matcher<Integer> matcher) {
         String actualCount = getTab(tabName).findElement(By.cssSelector("span")).getText();
         assertThat(Integer.parseInt(actualCount), matcher);
