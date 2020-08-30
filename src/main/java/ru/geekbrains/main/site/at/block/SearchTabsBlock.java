@@ -54,6 +54,7 @@ public class SearchTabsBlock extends BasePage {
     }
 
     private WebElement getTab(String tabName) {
+        //TODO вынести в ENUM
         switch (tabName) {
             case "Везде":
                 return tabEveryWhere;

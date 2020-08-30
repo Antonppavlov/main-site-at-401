@@ -33,22 +33,6 @@ public class SearchPage extends BasePage {
         return this;
     }
 
-    public HeaderBlock getHeaderBlock() {
-        return headerBlock;
-    }
-
-    public NavigationBlock getNavigationBlock() {
-        return navigationBlock;
-    }
-
-    public WebElement getPopUp1() {
-        return popUp1;
-    }
-
-    public WebElement getPopUp2() {
-        return popUp2;
-    }
-
     public SearchTabsBlock getSearchTabsBlock() {
         return searchTabsBlock;
     }

@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.geekbrains.main.site.at.BasePage;
-import ru.geekbrains.main.site.at.page.ContentPage;
+import ru.geekbrains.main.site.at.page.CoursePage;
+import ru.geekbrains.main.site.at.page.HomePage;
+import ru.geekbrains.main.site.at.page.base.BaseContentPage;
 import ru.geekbrains.main.site.at.utils.ButtonNotFoundException;
 
 public class NavigationBlock extends BasePage {
@@ -35,80 +37,55 @@ public class NavigationBlock extends BasePage {
         super(driver);
     }
 
-//    @Step("Нажатие в Навигации на кнопку: '{nameButton}'")
-//    public ContentPage clickButton(String nameButton) {
-//        switch (nameButton) {
-//            case "Иконка": {
-//                this.icon.click();
-//                break;
-//            }
-//            case "Курсы": {
-//                this.buttonCourses.click();
-//                break;
-//            }
-//            case "Вебинары": {
-//                this.buttonWebinars.click();
-//                break;
-//            }
-//            case "Форум": {
-//                this.buttonForum.click();
-//                break;
-//            }
-//            case "Блог": {
-//                this.buttonBlog.click();
-//                break;
-//            }
-//            case "Тесты": {
-//                this.buttonTests.click();
-//                break;
-//            }
-//            case "Карьера": {
-//                this.buttonCareer.click();
-//                break;
-//            }
-//            default: {
-//                throw new ButtonNotFoundException("Кнопки: " + nameButton + " нет на странице!");
-//            }
-//        }
-//        return new ContentPage(driver);
-//    }
-
     @Step("Нажатие в Навигации на кнопку: '{nameButton}'")
-    public ContentPage clickButton(NameButton nameButton) {
+    public BaseContentPage clickButton(NameButton nameButton) {
+        BaseContentPage baseContentPage = new BaseContentPage(driver);
+
         switch (nameButton) {
             case HOME: {
-                this.icon.click();
+                baseContentPage = new HomePage(driver);
                 break;
             }
             case COURSES: {
                 this.buttonCourses.click();
+                baseContentPage = new CoursePage(driver);
                 break;
             }
             case WEBINARS: {
                 this.buttonWebinars.click();
+                //TODO доработать для данного условия
+                //TODO необходимо создать Page для этой страницы
                 break;
             }
             case FORUM: {
                 this.buttonForum.click();
+                //TODO доработать для данного условия
+                //TODO необходимо создать Page для этой страницы
                 break;
             }
             case BLOG: {
                 this.buttonBlog.click();
+                //TODO доработать для данного условия
+                //TODO необходимо создать Page для этой страницы
                 break;
             }
             case TESTS: {
                 this.buttonTests.click();
+                //TODO доработать для данного условия
+                //TODO необходимо создать Page для этой страницы
                 break;
             }
             case CAREER: {
                 this.buttonCareer.click();
+                //TODO доработать для данного условия
+                //TODO необходимо создать Page для этой страницы
                 break;
             } default:{
                 throw new ButtonNotFoundException("Кнопки: " + nameButton + " нет на странице!\n" +
                         "Или условие не описано в switch!");
             }
         }
-        return new ContentPage(driver);
+        return  baseContentPage;
     }
 
     public enum NameButton {
@@ -131,14 +108,3 @@ public class NavigationBlock extends BasePage {
         }
     }
 }
-
-
-
-
-//    Иконка
-//    Курсы
-//    Вебинары
-//    Форум
-//    Блог
-//    Тесты
-//    Карьера

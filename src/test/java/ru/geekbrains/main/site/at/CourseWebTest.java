@@ -5,18 +5,19 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
 import ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
 import ru.geekbrains.main.site.at.page.CoursePage;
 
-import static example.Example.WEB_UI_TEST;
 
-
-@Epic(WEB_UI_TEST)
+@Epic("Web UI Тест")
 @Feature("Поиск")
 @Story("Проверка отображения блоков")
 @DisplayName("Страница Курсы")
+@Execution(ExecutionMode.CONCURRENT)
 public class CourseWebTest extends BaseWebSettingsTest {
 
 
@@ -40,13 +41,12 @@ public class CourseWebTest extends BaseWebSettingsTest {
     void checkSingInValidLogin() {
         driver.get("https://geekbrains.ru/login");
 
-        new AuthorizationPage(driver)
+        ((CoursePage) new AuthorizationPage(driver)
                 .singIn("hks47018@eoopy.com", "hks47018")
                 .checkPageName(NameButton.HOME)
-                .getNavigationBlock().clickButton(NameButton.COURSES);
+                .getNavigationBlock().clickButton(NameButton.COURSES)
 
-        new CoursePage(driver)
-                .getContentNavigationCourseBlock().clickTab("Курсы")
+        ).getContentNavigationCourseBlock().clickTab("Курсы")
                 .configFilter("Бесплатные", "Тестирование")
                 .checkingDisplayedCourses(
                         "Тестирование ПО. Уровень 1",

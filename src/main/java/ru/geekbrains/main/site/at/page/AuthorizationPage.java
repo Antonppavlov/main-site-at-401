@@ -22,11 +22,11 @@ public class AuthorizationPage extends BasePage implements IOpenURL {
     }
 
     @Step("Авторизация с логин {login} и пароль {password}")
-    public ContentPage singIn(String login, String password) {
+    public HomePage singIn(String login, String password) {
         inputLogin.sendKeys(login);
         inputPassword.sendKeys(password);
         buttonSingIn.click();
-        return new ContentPage(driver);
+        return new HomePage(driver);
     }
 
     @Override

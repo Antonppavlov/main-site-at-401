@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at.page;
+package ru.geekbrains.main.site.at.page.base;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,7 @@ import ru.geekbrains.main.site.at.BasePage;
 import ru.geekbrains.main.site.at.block.HeaderBlock;
 import ru.geekbrains.main.site.at.block.NavigationBlock;
 
-public class ContentPage extends BasePage {
+public class BaseContentPage extends BasePage {
 
     private HeaderBlock headerBlock;
     private NavigationBlock navigationBlock;
@@ -17,24 +17,23 @@ public class ContentPage extends BasePage {
     private WebElement buttonClosedPopUp1;
 
     @FindBy(css = "button>[class=\"svg-icon icon-popup-close-button \"]")
-    private WebElement buttonClosedPopUp2;
+    public WebElement buttonClosedPopUp2;
 
-    public ContentPage(WebDriver driver) {
+    public BaseContentPage(WebDriver driver) {
         super(driver);
         this.headerBlock = new HeaderBlock(driver);
         this.navigationBlock = new NavigationBlock(driver);
     }
 
-    public ContentPage checkPageName(NavigationBlock.NameButton nameButton) {
+    public BaseContentPage checkPageName(NavigationBlock.NameButton nameButton) {
         headerBlock.checkNamePage(nameButton.getText());
         return this;
     }
 
     @Step("Закрытие PopUp-ов")
-    public ContentPage closePopUp(){
+    public BaseContentPage closePopUp(){
         buttonClosedPopUp1.click();
         buttonClosedPopUp2.click();
-
         return this;
     }
 
@@ -46,5 +45,11 @@ public class ContentPage extends BasePage {
         return navigationBlock;
     }
 
+    public WebElement getButtonClosedPopUp1() {
+        return buttonClosedPopUp1;
+    }
 
+    public WebElement getButtonClosedPopUp2() {
+        return buttonClosedPopUp2;
+    }
 }

@@ -5,17 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.geekbrains.main.site.at.BasePage;
 import ru.geekbrains.main.site.at.block.ContentNavigationCourseBlock;
-import ru.geekbrains.main.site.at.block.HeaderBlock;
-import ru.geekbrains.main.site.at.block.NavigationBlock;
+import ru.geekbrains.main.site.at.page.base.BaseContentPage;
 
 import java.util.List;
 
-public class CoursePage extends BasePage {
+public class CoursePage extends BaseContentPage {
 
-    private HeaderBlock headerBlock;
-    private NavigationBlock navigationBlock;
     private ContentNavigationCourseBlock contentNavigationCourseBlock;
 
     @FindBy(xpath = "//form/ul//label")
@@ -24,19 +20,15 @@ public class CoursePage extends BasePage {
     @FindBy(xpath = "//a/div/div/span")
     private List<WebElement> courseList;
 
-    @FindBy(css = "button>[class=\"svg-icon icon-popup-close-button \"]")
-    private WebElement popUp2;
-
     public CoursePage(WebDriver driver) {
         super(driver);
-        this.headerBlock = new HeaderBlock(driver);
-        this.navigationBlock = new NavigationBlock(driver);
         this.contentNavigationCourseBlock = new ContentNavigationCourseBlock(driver);
     }
 
+    @Override
     @Step("Закрытие PopUp")
     public CoursePage closePopUp(){
-        popUp2.click();
+        buttonClosedPopUp2.click();
         return this;
     }
 

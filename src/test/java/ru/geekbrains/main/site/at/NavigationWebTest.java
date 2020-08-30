@@ -5,14 +5,15 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
-import ru.geekbrains.main.site.at.page.ContentPage;
+import ru.geekbrains.main.site.at.page.HomePage;
 
 import java.util.stream.Stream;
 
-import static example.Example.WEB_UI_TEST;
 import static ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
 
 //        Перейти на сайт https://geekbrains.ru/career
@@ -24,17 +25,18 @@ import static ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
 //        Тесты
 //        Карьера
 
-@Epic(WEB_UI_TEST)
+@Epic("Web UI Тест")
 @Feature("Навигация")
 @Story("Переход по навигации")
 @DisplayName("Навигация")
+@Execution(ExecutionMode.CONCURRENT)
 public class NavigationWebTest extends BaseWebSettingsTest {
 
     @ParameterizedTest(name = "{index} => Нажатие на: {0}")
     @MethodSource("stringProviderNotPopUp")
     public void checkNavigationNotPopUp(NameButton nameButton) {
         driver.get("https://geekbrains.ru/career");
-        new ContentPage(driver)
+        new HomePage(driver)
                 .getNavigationBlock().clickButton(nameButton)
                 .checkPageName(nameButton);
     }
@@ -55,7 +57,7 @@ public class NavigationWebTest extends BaseWebSettingsTest {
     public void checkNavigationPopUp() {
         driver.get("https://geekbrains.ru/career");
 
-        new ContentPage(driver)
+        new HomePage(driver)
                 .getNavigationBlock().clickButton(NameButton.BLOG)
                 .closePopUp()
                 .checkPageName(NameButton.BLOG);

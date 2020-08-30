@@ -4,6 +4,8 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
 import ru.geekbrains.main.site.at.block.NavigationBlock;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
@@ -11,7 +13,6 @@ import ru.geekbrains.main.site.at.page.SearchPage;
 
 import java.time.Duration;
 
-import static example.Example.WEB_UI_TEST;
 import static org.hamcrest.Matchers.*;
 
 //Перейти на сайт https://geekbrains.ru/courses
@@ -26,9 +27,10 @@ import static org.hamcrest.Matchers.*;
 //        Тестов не 0
 
 
-@Epic(WEB_UI_TEST)
+@Epic("Web UI Тест")
 @Feature("Поиск")
 @Story("Проверка скорости работы поиска")
+@Execution(ExecutionMode.CONCURRENT)
 public class PageLoadWebTest extends BaseWebSettingsTest {
 
     @DisplayName("Поиск загружается быстрее чем за 3 секунд")
