@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
+import ru.geekbrains.main.site.at.block.NavigationBlock;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
 import ru.geekbrains.main.site.at.page.SearchPage;
 
 import java.time.Duration;
 
+import static example.Example.WEB_UI_TEST;
 import static org.hamcrest.Matchers.*;
 
 //Перейти на сайт https://geekbrains.ru/courses
@@ -24,7 +26,7 @@ import static org.hamcrest.Matchers.*;
 //        Тестов не 0
 
 
-@Epic("Web UI тесты")
+@Epic(WEB_UI_TEST)
 @Feature("Поиск")
 @Story("Проверка скорости работы поиска")
 public class PageLoadWebTest extends BaseWebSettingsTest {
@@ -34,10 +36,11 @@ public class PageLoadWebTest extends BaseWebSettingsTest {
     @Issue("Issue_LINK")
     @TmsLink("BUG_LINK")
     void searchLoadsInLessThan3Seconds() {
-        driver.get("https://geekbrains.ru/login");
+
         SearchPage searchPage = new AuthorizationPage(driver)
+                .openURL()
                 .singIn("hks47018@eoopy.com", "hks47018")
-                .checkPageName("Главная")
+                .checkPageName(NavigationBlock.NameButton.HOME)
                 .getHeaderBlock()
                 .searchText("java");
 

@@ -8,7 +8,7 @@ import ru.geekbrains.main.site.at.BasePage;
 import ru.geekbrains.main.site.at.page.ContentPage;
 import ru.geekbrains.main.site.at.utils.ButtonNotFoundException;
 
-public class NavigationBlock extends BasePage{
+public class NavigationBlock extends BasePage {
 
     @FindBy(css = "[class=\"gb-left-menu__logo \"]")
     private WebElement icon;
@@ -35,44 +35,104 @@ public class NavigationBlock extends BasePage{
         super(driver);
     }
 
+//    @Step("Нажатие в Навигации на кнопку: '{nameButton}'")
+//    public ContentPage clickButton(String nameButton) {
+//        switch (nameButton) {
+//            case "Иконка": {
+//                this.icon.click();
+//                break;
+//            }
+//            case "Курсы": {
+//                this.buttonCourses.click();
+//                break;
+//            }
+//            case "Вебинары": {
+//                this.buttonWebinars.click();
+//                break;
+//            }
+//            case "Форум": {
+//                this.buttonForum.click();
+//                break;
+//            }
+//            case "Блог": {
+//                this.buttonBlog.click();
+//                break;
+//            }
+//            case "Тесты": {
+//                this.buttonTests.click();
+//                break;
+//            }
+//            case "Карьера": {
+//                this.buttonCareer.click();
+//                break;
+//            }
+//            default: {
+//                throw new ButtonNotFoundException("Кнопки: " + nameButton + " нет на странице!");
+//            }
+//        }
+//        return new ContentPage(driver);
+//    }
+
     @Step("Нажатие в Навигации на кнопку: '{nameButton}'")
-    public ContentPage clickButton(String nameButton){
-        switch (nameButton){
-            case "Иконка" : {
+    public ContentPage clickButton(NameButton nameButton) {
+        switch (nameButton) {
+            case HOME: {
                 this.icon.click();
                 break;
             }
-            case "Курсы" : {
+            case COURSES: {
                 this.buttonCourses.click();
                 break;
             }
-            case "Вебинары" : {
+            case WEBINARS: {
                 this.buttonWebinars.click();
                 break;
             }
-            case "Форум" : {
+            case FORUM: {
                 this.buttonForum.click();
                 break;
             }
-            case "Блог" : {
+            case BLOG: {
                 this.buttonBlog.click();
                 break;
             }
-            case "Тесты" : {
+            case TESTS: {
                 this.buttonTests.click();
                 break;
             }
-            case "Карьера" : {
+            case CAREER: {
                 this.buttonCareer.click();
                 break;
-            }
-            default:{
-                throw new ButtonNotFoundException("Кнопки: "+nameButton+" нет на странице!");
+            } default:{
+                throw new ButtonNotFoundException("Кнопки: " + nameButton + " нет на странице!\n" +
+                        "Или условие не описано в switch!");
             }
         }
         return new ContentPage(driver);
     }
+
+    public enum NameButton {
+        HOME("Главная"),
+        COURSES("Курсы"),
+        WEBINARS("Вебинары"),
+        FORUM("Форум"),
+        BLOG("Блог"),
+        TESTS("Тесты"),
+        CAREER("Карьера");
+
+        NameButton(String text) {
+            this.text = text;
+        }
+
+        private String text;
+
+        public String getText() {
+            return text;
+        }
+    }
 }
+
+
 
 
 //    Иконка

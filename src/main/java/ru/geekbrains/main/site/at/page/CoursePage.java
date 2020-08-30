@@ -10,7 +10,6 @@ import ru.geekbrains.main.site.at.block.ContentNavigationCourseBlock;
 import ru.geekbrains.main.site.at.block.HeaderBlock;
 import ru.geekbrains.main.site.at.block.NavigationBlock;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CoursePage extends BasePage {
@@ -57,19 +56,6 @@ public class CoursePage extends BasePage {
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
         }
         return this;
-    }
-
-    @Step("Поиск элемента в коллекции по тексту: '{expectedText}'")
-    private WebElement findElement(List<WebElement> list, String expectedText) {
-        List<String> arrayList = new ArrayList<>();
-        for (WebElement webElement : list) {
-            String actualText = webElement.getText();
-            arrayList.add(actualText);
-            if (actualText.toLowerCase().trim().equals(expectedText.toLowerCase().trim())) {
-                return webElement;
-            }
-        }
-        throw new RuntimeException("В коллекции элементов: " + arrayList + "\nНе найден элемент с тектом: " + expectedText);
     }
 
     public ContentNavigationCourseBlock getContentNavigationCourseBlock() {

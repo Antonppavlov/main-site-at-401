@@ -4,8 +4,10 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
+import ru.geekbrains.main.site.at.block.NavigationBlock;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
 
+import static example.Example.WEB_UI_TEST;
 import static org.hamcrest.Matchers.*;
 
 //        Перейти на сайт https://geekbrains.ru/courses
@@ -20,7 +22,7 @@ import static org.hamcrest.Matchers.*;
 //        Тестов не 0
 
 
-@Epic("Web UI тесты")
+@Epic(WEB_UI_TEST)
 @Feature("Поиск")
 @Story("Проверка отображения всех блоков")
 
@@ -37,7 +39,7 @@ public class SearchWebTest extends BaseWebSettingsTest {
         driver.get("https://geekbrains.ru/login");
         new AuthorizationPage(driver)
                 .singIn("hks47018@eoopy.com","hks47018")
-                .checkPageName("Главная")
+                .checkPageName(NavigationBlock.NameButton.HOME)
                 .getHeaderBlock()
                 .searchText("java")
                 .getSearchTabsBlock()

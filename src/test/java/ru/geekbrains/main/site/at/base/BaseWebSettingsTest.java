@@ -30,8 +30,6 @@ public abstract class BaseWebSettingsTest {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-//
-        driver.get("https://geekbrains.ru/career");
 
         wait30second = new WebDriverWait(driver, 30);
         wait15second = new WebDriverWait(driver, 15);

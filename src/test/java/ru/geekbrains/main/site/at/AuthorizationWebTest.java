@@ -6,7 +6,10 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
+import ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
+
+import static example.Example.WEB_UI_TEST;
 
 //Реализовать тест:
 //1. Перейти на страницу авторизация https://geekbrains.ru/login
@@ -15,7 +18,7 @@ import ru.geekbrains.main.site.at.page.AuthorizationPage;
 //4. Нажать кнопку войти
 //5. Проверить что отобразилась страница "Главная"
 
-@Epic("Web UI тесты")
+@Epic(WEB_UI_TEST)
 @Feature("Авторизация")
 @Story("Успешная авторизация")
 @DisplayName("Авторизация")
@@ -24,10 +27,10 @@ public class AuthorizationWebTest extends BaseWebSettingsTest {
     @DisplayName("Авторизация с почтой 10минут")
     @Test
     void name1() {
-        driver.get("https://geekbrains.ru/login");
         new AuthorizationPage(driver)
+                .openURL()
                 .singIn("hks47018@eoopy.com", "hks47018")
-                .checkPageName("Главная");
+                .checkPageName(NameButton.HOME);
 
     }
 }

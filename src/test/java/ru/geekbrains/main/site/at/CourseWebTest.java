@@ -1,19 +1,26 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.geekbrains.main.site.at.base.BaseWebSettingsTest;
+import ru.geekbrains.main.site.at.block.NavigationBlock.NameButton;
 import ru.geekbrains.main.site.at.page.AuthorizationPage;
 import ru.geekbrains.main.site.at.page.CoursePage;
 
+import static example.Example.WEB_UI_TEST;
+
+
+@Epic(WEB_UI_TEST)
 @Feature("Поиск")
 @Story("Проверка отображения блоков")
 @DisplayName("Страница Курсы")
 public class CourseWebTest extends BaseWebSettingsTest {
 
-//Реализовать тест:
+
+    //Реализовать тест:
 //1. Перейти на страницу авторизация https://geekbrains.ru/login
 //2. Ввести логин : hks47018@eoopy.com
 //3. Пароль: hks47018
@@ -35,8 +42,8 @@ public class CourseWebTest extends BaseWebSettingsTest {
 
         new AuthorizationPage(driver)
                 .singIn("hks47018@eoopy.com", "hks47018")
-                .checkPageName("Главная")
-                .getNavigationBlock().clickButton("Курсы");
+                .checkPageName(NameButton.HOME)
+                .getNavigationBlock().clickButton(NameButton.COURSES);
 
         new CoursePage(driver)
                 .getContentNavigationCourseBlock().clickTab("Курсы")

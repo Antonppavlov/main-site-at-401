@@ -25,8 +25,8 @@ public class ContentPage extends BasePage {
         this.navigationBlock = new NavigationBlock(driver);
     }
 
-    public ContentPage checkPageName(String expectedNamePage) {
-        headerBlock.checkNamePage(expectedNamePage);
+    public ContentPage checkPageName(NavigationBlock.NameButton nameButton) {
+        headerBlock.checkNamePage(nameButton.getText());
         return this;
     }
 
